@@ -11,6 +11,11 @@ app.listen(port, () => {
 
 app.use("/client", require("./routes/client"));
 app.use("/users", require("./routes/users"));
+app.use("/staff", require("./routes/staff"));
+app.use("/services", require("./routes/services"));
+app.use("/business", require("./routes/business"));
+app.use("/booking", require("./routes/booking"));
+app.use("/scat", require("./routes/serviceCategories"));
 app.get("/", (req, res) => {
   res.send("Hello from Express");
 });
