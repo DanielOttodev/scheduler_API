@@ -15,14 +15,17 @@ function dbactivity(sqlquery, req, res) {
           console.log("query: " + sqlquery);
           console.log(results);
           if (error) {
-            res.send(error);
+            console.log("err", error);
+            res.send({ errmsg: error }).status(500);
           } else {
-            res.send(results);
+            console.log("success");
+            res.send({ result: results, status: "OK" }).status(200);
           }
         });
       });
     } else {
-      res.send(validate);
+      console.log("Invalid");
+      res.send(JSON.stringify({ msg: "Invalid Token" })).status(401);
     }
   } catch (error) {
     console.log(error);

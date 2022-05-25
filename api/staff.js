@@ -1,11 +1,11 @@
 const common = require("../common");
 
 exports.getStaff = (req, res) => {
-  common.dbactivity(`select * from staff`, req, res);
+  common.dbactivity(`select * from Staff`, req, res);
 };
 exports.updateStaff = (req, res) => {
   common.dbactivity(
-    `UPDATE services SET name = ${req.body.name}
+    `UPDATE Staff SET name = ${req.body.name}
     `,
     req,
     res
@@ -13,12 +13,16 @@ exports.updateStaff = (req, res) => {
 };
 
 exports.addStaff = (req, res) => {
-  common.dbactivity(`INSERT into staff VALUES ('${req.body.name}' , '1' )`);
+  common.dbactivity(
+    `INSERT into Staff VALUES (0,'${req.body.name}','${req.body.email}' , '1' )`,
+    req,
+    res
+  );
 };
 
 exports.deleteStaff = (req, res) => {
   common.dbactivity(
-    `DELETE from staff where idStaff = '${req.body.idStaff}'`,
+    `DELETE from Staff where idStaff = '${req.body.idStaff}'`,
     req,
     res
   );

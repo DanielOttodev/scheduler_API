@@ -1,17 +1,19 @@
 const common = require("../common");
 
 exports.getClientList = (req, res) => {
-  common.dbactivity(`select distinct clientID, Name from Client`, req, res);
+  common.dbactivity(`select distinct idClient, Name from Client`, req, res);
 };
 
 exports.getAllClient = (req, res) => {
   common.dbactivity(`select * from Client`, req, res);
 };
 exports.getClient = (req, res) => {
-  let clientid = req.params.clientID.split("=")[1];
+  console.log("Here");
+  console.log(req.params);
+  let clientid = req.params.clientID;
   console.log(clientid);
   common.dbactivity(
-    `select * from Client where clientID = '${clientid}'`,
+    `select * from Client where idClient = '${clientid}'`,
     req,
     res
   );
@@ -19,11 +21,14 @@ exports.getClient = (req, res) => {
 
 exports.createClient = (req, res) => {
   common.dbactivity(
-    `INSERT INTO Client VALUES ('${req.body.name}', '${req.body.email}', '${
+    `INSERT INTO Client VALUES (0,'${req.body.name}', '${req.body.email}', '${
       req.body.phone
-    }', '${req.body.address}', '${req.body.suburb}', '${req.body.dob}' ,'${
-      new Date().toLocaleDateString
-    }')`,
+    }', '${req.body.address}', '${req.body.suburb}', '${
+      req.body.dob
+    }' ,'${new Date()
+      .toLocaleDateString()
+      .replace("/", "-")
+      .replace("/", "-")}')`,
     req,
     res
   );

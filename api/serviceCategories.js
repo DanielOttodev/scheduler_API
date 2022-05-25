@@ -14,7 +14,7 @@ exports.updateSCat = (req, res) => {
 
 exports.addSCat = (req, res) => {
   common.dbactivity(
-    `INSERT into ServiceCategories VALUES ('${req.body.description}'  )`,
+    `INSERT into ServiceCategories VALUES (0 ,'${req.body.description}')`,
     req,
     res
   );
